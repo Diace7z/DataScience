@@ -14,17 +14,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-# In[ ]:
-
-
-def valo_scraper(series):
-    for i in series:
-        
-
-
-# In[2]:
-
-
 def link_maker(Nick):
     ID = str(Nick)
     if " " in ID:
@@ -189,75 +178,4 @@ stats = overview('https://tracker.gg/valorant/profile/riot/poppinsguide%20com%23
 stats
 
 
-# In[16]:
-
-
-stats
-
-
-# In[ ]:
-
-
-(/*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[1]/span[1]/)
-(/*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[1]/span[1])
-
-
-# In[ ]:
-
-
-'//*[@id=\"app\"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[1]/span[1]/'
-
-
-# In[ ]:
-
-
-side bar = //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1] 
-main bar = //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]
-
-
-# In[ ]:
-
-
-(/*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[2]/div)
-
-
-# In[11]:
-
-
-driver = webdriver.Chrome()
-driver.maximize_window()
-nick = """Peggsterr#NJLTC"""
-print(nick)
-link = link_maker(nick)
-driver.get(link)
-
-X_path = '//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[2]/div'
-child_divs = driver.find_elements(By.XPATH, X_path + '/div')
-print(f"Number of <div> elements: {len(child_divs)}")
-print(element)
-
-
-# In[9]:
-
-
-# Python program to demonstrate
-# selenium
- 
-# import webdriver
-from selenium import webdriver
- 
-# create webdriver object
-driver = webdriver.Edge()
- 
-# enter keyword to search
-keyword = "geeksforgeeks"
-
-# get geeksforgeeks.org
-driver.get("https://www.geeksforgeeks.org/")
-driver.implicitly_wait(10) 
-# get elements
-elements = driver.find_elements(By.CLASS_NAME,"gsc-i-id2")
- 
-# print complete elements list
-print(elements)
 
