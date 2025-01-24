@@ -11,6 +11,7 @@ import time
 import datetime
 import math
 import random
+import re
 
 def link_maker(Nick, episode):
     
@@ -49,7 +50,12 @@ def mainbar(link, driver):
             X_Path = i
             element = WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.XPATH, X_Path)))
             value = element.text
-            overview.append(value)
+            if i != list_xpath1[0]:
+                value = value.replace(',','')
+                value = float(re.search(r'\d+', value ).group())
+                overview.append(value)
+            else:
+                overview.append(value)
             
 
         except Exception as e:
@@ -60,8 +66,10 @@ def mainbar(link, driver):
         try:
             X_path = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[3]/div[{i}]/div/div[2]/span[2]/span'
             element = WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.XPATH, X_path)))
-            overview.append(element.text)
-            overview
+            value = element.text
+            value = value.replace(',','')
+            value = float(re.search(r'\d+', value ).group())
+            overview.append(value)
         except Exception as e:
             
             overview.append(float("nan"))
@@ -73,7 +81,10 @@ def mainbar(link, driver):
             X_Path = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[{i}]/div/div[2]/span[2]/span'
                      #//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div/div[2]/span[2]/span
             element = WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.XPATH, X_Path)))
-            overview.append(element.text)
+            value = element.text
+            value = value.replace(',','')
+            value = float(re.search(r'\d+', value ).group())
+            overview.append(value)
             
                        #//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div/div[2]/span[2]/span
         except:
@@ -83,10 +94,11 @@ def mainbar(link, driver):
             try:
                 X_Path = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[{i}]/div/div[1]/span[2]/span'
                 element = WebDriverWait(driver,2).until(EC.presence_of_element_located((By.XPATH, X_Path)))
-                overview.append(element.text)
-                
+                value = element.text
+                value = value.replace(',','')
+                value = float(re.search(r'\d+', value ).group())
+                overview.append(value)
             except Exception as e:
-                
                 overview.append(float("nan"))
                 
     #['round_win']
@@ -96,8 +108,10 @@ def mainbar(link, driver):
         try:
             X_path = i
             element = WebDriverWait(driver,5).until(EC.presence_of_element_located((By.XPATH, X_path)))
-            overview.append(element.text)
-
+            value = element.text
+            value = value.replace(',','')
+            value = float(re.search(r'\d+', value).group())
+            overview.append(value)
         except Exception as e:
             overview.append(float("nan"))
             
@@ -113,7 +127,13 @@ def mainbar(link, driver):
             try:
                 X_path=f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div[{i}]/div[{j}]'
                 value = driver.find_element(by='xpath', value=X_path).text
-                overview.append(value)
+                if (j>1 and j<8):
+                    value = element.text
+                    value = value.replace(',','')
+                    value = float(re.search(r'\d+', value ).group())
+                    overview.append(value)
+                else:
+                    overview.append(value)
             except Exception as e:
                 overview.append(float("nan"))
     return overview
@@ -157,7 +177,11 @@ def sidebar(link,driver):
                     list_path = f'div[1]/table/tbody/tr[{row}]/td[{col}]'
                     x_path = xpath_accuracy + list_path
                     element = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, x_path)))
-                    accuracy_list.append(element.text)
+                    value = element.text
+                    value = value.replace(',','')
+                    value = float(re.search(r'\d+', value ).group())
+                    accuracy_list.append(value)
+                    
                 except:
                     accuracy_list.append(float("nan"))
 
@@ -181,7 +205,13 @@ def sidebar(link,driver):
                 try: 
                     x_path = xpath_roles+tail
                     element = driver.find_element(by='xpath', value=x_path).text
-                    roles_list.append(element)
+                    if tail != path_tail[0] or tail != path_tail[2] :
+                        value = element
+                        value = value.replace(',','')
+                        value = float(re.search(r'\d+', value ).group())
+                        overview.append(value)
+                    else:
+                        roles_list.append(element)
                 except:
                     roles_list.append(float("nan"))
     else:
@@ -204,7 +234,13 @@ def sidebar(link,driver):
                 try:
                     x_path = xpath_top_weapon+tail
                     element = driver.find_element(by='xpath', value=x_path).text
-                    top_weapons_list.append(element)
+                    if tail != path_tail[0]:
+                        value = element
+                        value = value.replace(',','')
+                        value = float(re.search(r'\d+', value ).group())
+                        overview.append(value)
+                    else:
+                        top_weapons_list.append(element)
 
                 except:
                     top_weapons_list.append(float("nan"))
@@ -241,7 +277,13 @@ def sidebar(link,driver):
                 try:
                     x_path = xpath_top_map+tail
                     element = driver.find_element(by='xpath', value=x_path).text
-                    top_map_list.append(element)
+                    if tail != path_tail[0]:
+                        value = element
+                        value = value.replace(',','')
+                        value = float(re.search(r'\d+', value ).group())
+                        overview.append(value)
+                    else:
+                        top_map_list.append(element)
                 except:
                     top_map_list.append(float("nan"))
     else:
