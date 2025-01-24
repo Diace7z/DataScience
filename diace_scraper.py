@@ -36,12 +36,12 @@ def mainbar(link, driver):
     
     
     #rank, rank_rating, rank_number, level, match, playtime_hours
-    list_xpath1=['//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[1]/span[1]', #rank
-                '//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[1]/span[2]', #rankrating
-                '//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[1]/span[3]', #ranknumber
-                '//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[2]/span[2]', #level
-                '//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div/div[1]/div/div/span[2]', #Match
-                '//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div/div[1]/div/div/span[1]'] #Playhours
+    list_xpath1=['//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[1]/span[1]', #rank
+                '//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[1]/span[2]', #rankrating
+                '//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[1]/span[3]', #ranknumber
+                '//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[1]/div/div[2]/span[2]', #level
+                '//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div/div[1]/div/div/span[2]', #Match
+                '//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div/div[1]/div/div/span[1]'] #Playhours
     
     #['rank','rank_rating','level', 'match', 'playtime_hours']
     for i in list_xpath1:
@@ -64,7 +64,10 @@ def mainbar(link, driver):
     #['damage_round','kill_death_ratio','headshot_rate','winrate']
     for i in range(1,5):
         try:
-            X_path = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[3]/div[{i}]/div/div[2]/span[2]/span'
+            X_path = f'//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[3]/div[{i}]/div/div[2]/span[2]/span'
+                     #//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[3]/div[1]/div/div[2]/span[2]/span
+                     #//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[3]/div[1]/div/div[2]/span[2]/span
+                     #//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[3]/div[1]/div/div[2]/span[2]/span
             element = WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.XPATH, X_path)))
             value = element.text
             value = value.replace(',','')
@@ -78,21 +81,21 @@ def mainbar(link, driver):
     #['win', 'kast','damage_roun','kills','death','assist','acs','kad_ratio','kill_round_ratio','first_blood','flawless_round','aces']
     for i in range(1,13):
         try:
-            X_Path = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[{i}]/div/div[2]/span[2]/span'
-                     #//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div/div[2]/span[2]/span
+            X_Path = f'//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[{i}]/div/div[2]/span[2]/span'
+                     #//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div/div[2]/span[2]/span
             element = WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.XPATH, X_Path)))
             value = element.text
             value = value.replace(',','')
             value = float(re.search(r'\d+', value ).group())
             overview.append(value)
             
-                       #//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div/div[2]/span[2]/span
+                       #//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div/div[2]/span[2]/span
         except:
-            #//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div/div[2]/span[2]/span
-            #//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[5]/div/div[1]/span[2]/span
+            #//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[1]/div/div[2]/span[2]/span
+            #//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[5]/div/div[1]/span[2]/span
             
             try:
-                X_Path = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[{i}]/div/div[1]/span[2]/span'
+                X_Path = f'//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[1]/div[5]/div[{i}]/div/div[1]/span[2]/span'
                 element = WebDriverWait(driver,2).until(EC.presence_of_element_located((By.XPATH, X_Path)))
                 value = element.text
                 value = value.replace(',','')
@@ -102,7 +105,7 @@ def mainbar(link, driver):
                 overview.append(float("nan"))
                 
     #['round_win']
-    list_xpath2=['//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]']#RoundWin%]
+    list_xpath2=['//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]']#RoundWin%]
                  
     for i in list_xpath2:
         try:
@@ -125,7 +128,7 @@ def mainbar(link, driver):
     for i in range(1,6,2):
         for j in range(1,9):
             try:
-                X_path=f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div[{i}]/div[{j}]'
+                X_path=f'//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[2]/div[2]/div/div/div[2]/div/div[{i}]/div[{j}]'
                 value = driver.find_element(by='xpath', value=X_path).text
                 if (j>1 and j<8):
                     value = element.text
@@ -140,7 +143,7 @@ def mainbar(link, driver):
 
 def sidebar(link,driver):
     
-    xpath='//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div'
+    xpath='//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div'
     driver.implicitly_wait(3)
     elements= driver.find_elements(by='xpath', value=xpath)
     section=[]
@@ -160,14 +163,14 @@ def sidebar(link,driver):
         else:
             number = section.index("Accuracy")
 
-
-        xpath_accuracy = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[{number+1}]/'
+                          #//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]
+        xpath_accuracy = f'//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[{number+1}]/'
         """
-        //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[2]/div[1]/table/tbody/tr[1]/td[1]
-        //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[2]/div[1]/table/tbody/tr[1]/td[2]
-        //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[2]/div[1]/table/tbody/tr[2]/td[1]
+        //*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[2]/div[1]/table/tbody/tr[1]/td[1]
+        //*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[2]/div[1]/table/tbody/tr[1]/td[2]
+        //*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[2]/div[1]/table/tbody/tr[2]/td[1]
 
-        //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[2]/div[1]/table/tbody/tr[3]/td[1]
+        //*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[2]/div[1]/table/tbody/tr[3]/td[1]
 
         """
         #['head_rate','head_hits','body_rate','body_hits','legs_rate','legs_hits']
@@ -196,7 +199,7 @@ def sidebar(link,driver):
     """
     if "Roles" in section:
         number = section.index("Roles")
-        xpath_roles = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[{number+1}]/'
+        xpath_roles = f'//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[{number+1}]/'
 
         for i in range(1,5):
             path_tail = [f'div/div[{i}]/h5',f'div/div[{i}]/div[2]/div[1]/span[1]', f'div/div[{i}]/div[2]/div[1]/span[2]',
@@ -225,7 +228,7 @@ def sidebar(link,driver):
     
     if "Top Weapons" in section:
         number = section.index("Top Weapons")
-        xpath_top_weapon = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[{number+1}]/div/'
+        xpath_top_weapon = f'//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[{number+1}]/div/'
         for i in range(1,4):
             path_tail = [f'div[{i}]/div[1]/div[1]',f'div[{i}]/div[1]/div[2]',
                          f'div[{i}]/div[2]/div[1]/span[1]', f'div[{i}]/div[2]/div[1]/span[2]', f'div[{i}]/div[2]/div[1]/span[3]',
@@ -249,15 +252,15 @@ def sidebar(link,driver):
 
     if "Top Maps" in section:
         number = section.index("Top Maps")
-        xpath_top_map = f'//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[{number+1}]/div'
+        xpath_top_map = f'//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[{number+1}]/div'
 
         """
-        //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[5]/div/div[{i}]/div[1] Map name
-        //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[5]/div/div[{i}]/div[2]/div[1] Winrate
-        //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[5]/div/div[{i}]/div[2]/div[2] win-lose
+        //*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[5]/div/div[{i}]/div[1] Map name
+        //*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[5]/div/div[{i}]/div[2]/div[1] Winrate
+        //*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[5]/div/div[{i}]/div[2]/div[2] win-lose
 
-        //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[5]/div/div[3]/div[1]
-        //*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div[2]/div[1]/div[5]/div/div[8]/div[1]
+        //*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[5]/div/div[3]/div[1]
+        //*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div[2]/div[1]/div[5]/div/div[8]/div[1]
 
         """
         """
@@ -293,6 +296,8 @@ def sidebar(link,driver):
     
     return sidebar_overview
 
+
+
 def id_collector(start=1, last=190,regions=["na", "eu", "ap","kr", "br", "latam"], episode='Current'):
 
     Episode = {'Current':'', 'V25A1':'&act=476b0893-4c2e-abd6-c5fe-708facff0772',
@@ -320,8 +325,9 @@ def id_collector(start=1, last=190,regions=["na", "eu", "ap","kr", "br", "latam"
                         print('nothing')
                 except:
                     print('table found')
-                table_XPath = '//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div/div/div[1]/div/table/tbody/'
+                table_XPath = '//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div/div/div[1]/div/table/tbody/'
                               #//*[@id="app"]/div[2]/div[3]/div/main/div[3]/div[2]/div/div/div[1]/div[]/table/tbody/tr[1]
+                              #//*[@id="app"]/div[2]/div[3]/div/main/div[4]/div[2]/div/div/div[1]/div/table
                 num_rows = len(driver.find_elements(by='xpath', value=table_XPath + 'tr')) + 1
                 num_cols = len(driver.find_elements(by='xpath', value=table_XPath + 'tr[1]/td'))
 
@@ -474,4 +480,3 @@ def valo_scraper(start=0, end=-1, sample_population_rate= 0.20, episode_act:str 
     t1 = time.time()
     print("Time spent:",t1-t0)
     
-
