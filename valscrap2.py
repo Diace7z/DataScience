@@ -435,19 +435,6 @@ def id_collector(start=1, last=190,regions=["na", "eu", "ap","kr", "br", "latam"
 
 def valo_scraper(start=0, end=-1, sample_population_rate= 0.20, episode_act:str = 'Current',
                  file_name ='',nama_file_akhir='', div_nomor=3):
-    import numpy as np
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-    from selenium import webdriver
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
-    import undetected_chromedriver as uc
-    import time
-    import datetime
-    import math
-    import random
     
     dtframe = []
     t0 = time.time()
